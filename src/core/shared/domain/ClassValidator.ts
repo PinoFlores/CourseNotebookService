@@ -1,5 +1,5 @@
-import { Optional } from "@core/common/type";
-import { validate, ValidationError } from "class-validator";
+import { Optional } from '@core/shared/domain/Nullable';
+import { validate, ValidationError } from 'class-validator';
 
 export type ClassValidationDetails = {
   context: string;
@@ -23,12 +23,12 @@ export class ClassValidator {
     if (errors.length > 0) {
       details = {
         context: context || target.constructor.name,
-        errors: [],
+        errors: []
       };
       for (const error of errors) {
         details.errors.push({
           property: error.property,
-          message: error.constraints ? Object.values(error.constraints) : [],
+          message: error.constraints ? Object.values(error.constraints) : []
         });
       }
     }

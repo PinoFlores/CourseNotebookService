@@ -18,7 +18,6 @@
     },  
     "types": [
       "reflect-metadata",
-      "jest",
       "node"
     ],                         /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */                    /* Specify file to store incremental compilation information */
     "removeComments": true,                      /* Do not emit comments to output. */

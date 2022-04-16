@@ -1,10 +1,13 @@
-import { v4 } from "uuid";
-import { Nullable } from "@core/common/type";
-import { Entity, RemovableEntity } from "@core/common/entity";
-import { IsDate, IsOptional, IsString } from "class-validator";
-import { CreateLectureEntityPayload } from "./types/CreateLectureEntityPayload";
+import { v4 } from 'uuid';
+import { Nullable } from '@core/shared/domain/Nullable';
+import { IsDate, IsOptional, IsString } from 'class-validator';
+import { RemovableEntity } from '@core/shared/domain/Removable';
+import { AggregateRoot } from '@core/shared/domain/AggregateRoot';
+import { CreateLectureEntityPayload } from '../application/CreateLectureEntityPayload';
 
-export class Lecture extends Entity<string> implements RemovableEntity {
+export class Lecture extends AggregateRoot implements RemovableEntity {
+  private id: string;
+
   @IsString()
   private title: string;
 
@@ -35,9 +38,8 @@ export class Lecture extends Entity<string> implements RemovableEntity {
     this.deletedAt = payload.deletedAt || null;
   }
 
-  public async remove(): Promise<void> {
-    this.deletedAt = new Date();
-    await this.validate();
+  public getId(): string {
+    return this.id;
   }
 
   public getTitle(): string {
@@ -58,5 +60,20 @@ export class Lecture extends Entity<string> implements RemovableEntity {
 
   public getDeletedAt(): Nullable<Date> {
     return this.deletedAt;
+  }
+
+  public async remove(): Promise<void> {
+    this.deletedAt = new Date();
+  }
+
+  toPrimitives() {
+    return {
+      id: this.id,
+      title: this.title,
+      content: this.content,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+      deletedAt: this.deletedAt
+    };
   }
 }
