@@ -4,4 +4,6 @@ services:
     class : ../../../core/Lecture/infrastructure/persistance/MongoLectureRepository
     arguments: ['@Shared.ConnectionManager']
 
-    
+  Lectures.GetController:
+    class : ../../controllers/Lecture/LectureGetController
+    arguments: ['@Lectures.Repository']
