@@ -67,11 +67,19 @@ export class Lecture extends AggregateRoot implements RemovableEntity {
   }
 
   static fromPrimitives(plainData: { id: string; title: string; content: string }): Lecture {
-    return new Lecture({
+    const created = new Lecture({
       id: plainData.id,
       title: plainData.title,
       content: plainData.content
     });
+    created.validate();
+    return created;
+  }
+
+  public static async new(payload: CreateLectureEntityPayload) {
+    const lecture = new Lecture(payload);
+    await lecture.validate();
+    return lecture;
   }
 
   toPrimitives() {

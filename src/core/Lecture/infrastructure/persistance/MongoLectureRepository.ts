@@ -15,8 +15,12 @@ export class MongoLectureRepository extends MongoRepository<Lecture> implements 
     });
   }
 
-  create(lecture: Lecture): Promise<void> {
-    return this.persist(lecture.getId(), lecture);
+  public async create(lecture: Lecture): Promise<void> {
+    const created = await Lecture.new({
+      title: lecture.getTitle(),
+      content: lecture.getContent()
+    });
+    return this.persist(created.getId(), created);
   }
 
   public async findById(id: string): Promise<Nullable<Lecture>> {
