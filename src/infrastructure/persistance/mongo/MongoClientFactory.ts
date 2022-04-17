@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb';
-import { Nullable } from '@core/shared/domain/Nullable';
+import { Nullable } from 'src/core/shared/domain/Nullable';
 
 export type MongoConfig = { url: string };
 

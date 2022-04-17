@@ -1,8 +1,8 @@
 import { v4 } from 'uuid';
-import { Nullable } from '@core/shared/domain/Nullable';
+import { Nullable } from 'src/core/shared/domain/Nullable';
 import { IsDate, IsOptional, IsString } from 'class-validator';
-import { RemovableEntity } from '@core/shared/domain/Removable';
-import { AggregateRoot } from '@core/shared/domain/AggregateRoot';
+import { RemovableEntity } from 'src/core/shared/domain/Removable';
+import { AggregateRoot } from 'src/core/shared/domain/AggregateRoot';
 import { CreateLectureEntityPayload } from '../application/CreateLectureEntityPayload';
 
 export class Lecture extends AggregateRoot implements RemovableEntity {
@@ -64,6 +64,14 @@ export class Lecture extends AggregateRoot implements RemovableEntity {
 
   public async remove(): Promise<void> {
     this.deletedAt = new Date();
+  }
+
+  static fromPrimitives(plainData: { id: string; title: string; content: string }): Lecture {
+    return new Lecture({
+      id: plainData.id,
+      title: plainData.title,
+      content: plainData.content
+    });
   }
 
   toPrimitives() {

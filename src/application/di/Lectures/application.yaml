@@ -1,0 +1,7 @@
+services:
+
+  Lectures.Repository:
+    class : ../../../core/Lecture/infrastructure/persistance/MongoLectureRepository
+    arguments: ['@Shared.ConnectionManager']
+
+    

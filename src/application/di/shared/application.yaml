@@ -1,0 +1,13 @@
+services:
+
+  Shared.MongoConfig:
+    factory:
+      class: ../../../core/shared/infrastruture/persistance/mongo/MongoConfigFactory
+      method: 'createConfig'
+
+  Shared.ConnectionManager:
+    factory:
+      class: ../../../infrastructure/persistance/mongo/MongoClientFactory
+      method: 'createClient'
+    arguments: ['lectures', '@Shared.MongoConfig']
+      

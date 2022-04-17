@@ -1,4 +1,4 @@
-import { Optional } from '@core/shared/domain/Nullable';
+import { Optional } from 'src/core/shared/domain/Nullable';
 import { validate, ValidationError } from 'class-validator';
 
 export type ClassValidationDetails = {

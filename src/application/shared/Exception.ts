@@ -1,5 +1,5 @@
 import { CodeDescription } from './code';
-import { Optional } from '@core/shared/domain/Nullable';
+import { Optional } from 'src/core/shared/domain/Nullable';
 
 export type CreateExceptionPayload<TData> = {
   code: CodeDescription;
