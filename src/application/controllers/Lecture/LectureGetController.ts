@@ -7,7 +7,7 @@ export default class LectureGetController implements Controller {
   constructor(private repository: MongoLectureRepository) {}
 
   async run(req: Request, res: Response) {
-    const a = await this.repository.search('1');
-    res.status(httpStatus.OK).send(a?.toPrimitives());
+    const lectures = await this.repository.findAll();
+    res.status(httpStatus.OK).send(lectures);
   }
 }

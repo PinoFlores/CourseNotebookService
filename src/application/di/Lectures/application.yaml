@@ -7,3 +7,7 @@ services:
   Lectures.GetController:
     class : ../../controllers/Lecture/LectureGetController
     arguments: ['@Lectures.Repository']
+    
+  Lectures.CreateController:
+    class : ../../controllers/Lecture/LectureCreateController
+    arguments: ['@Lectures.Repository']
